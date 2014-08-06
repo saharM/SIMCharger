@@ -1,0 +1,45 @@
+﻿<Window x:Class="SIMCharger.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+        Title="MainWindow" Height="356.251" Width="756.221">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Name="grid1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="1" Grid.Column="3" Text="شماره موبایل" Margin="5" RenderTransformOrigin="2.589,0.419" />
+            <TextBox  Grid.Row="1" Grid.Column="2" Margin="3" Text="{Binding Path=SearchMobileNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            <TextBlock Grid.Row="0" Grid.Column="3" Text="تاریخ فعالسازی" Margin="5" />
+            <my:DatePicker Grid.Row="0" Grid.Column="2" Margin="3" Name="dtpActivation" SelectedDate="{Binding Path=SearchMobileActivateDate, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />            
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="تاریخ آخرین شارژ" Margin="5" />
+            <my:DatePicker Grid.Row="0" Grid.Column="0" Margin="3" Name="dtpLastCharge" SelectedDate="{Binding Path=SearchMobileLastChargeDate, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />            
+            <Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Content="جستجو" Margin="5" Command="{Binding SearchCommand}" Width="100px" />
+        </Grid>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding StatsText}" Margin="10" />
+        <Button Grid.Column="1" Content="شارژ لیست" Margin="150,20,30,20" Command="{Binding ChargeCommand}" Width="100px" />
+        <Button Grid.Column="1" Content="ورود اکسل" Margin="30,20,150,20" Command="{Binding ImportCommand}" Width="100px" />
+        <ListBox Grid.Row="1" Grid.Column="0" SelectedItem="{Binding SelectedResult}" ItemsSource="{Binding searchResults}">
+        </ListBox>
+        <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding ChargeResultMobileNumbers}">
+        </ListBox>
+    </Grid>
+</Window>
